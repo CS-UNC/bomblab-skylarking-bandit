@@ -57,7 +57,7 @@ jobs:
         setup-command: chmod 755 bomb
         command: "./bomb solution.txt"
         input: ''
-        expected-output: That's number 2. Keep going!
+        expected-output: That's number 2.  Keep going
         comparison-method: contains
         timeout: 10
         max-score: 10
@@ -69,9 +69,10 @@ jobs:
         setup-command: chmod 755 bomb
         command: "./bomb solution.txt"
         input: ''
-        expected-output: So you got that one. Try this one.
+        expected-output: So you got that one.  Try this one.
         comparison-method: contains
         timeout: 10
+        max-score: 15
     - name: Fifth Phase (Included Test)
       id: fifth-phase-included-test
       uses: classroom-resources/autograding-io-grader@v1
@@ -80,7 +81,7 @@ jobs:
         setup-command: sudo chmod 755 bomb
         command: "./bomb solution.txt"
         input: ''
-        expected-output: Good work! On to the next...
+        expected-output: Good work!  On to the next...
         comparison-method: contains
         timeout: 10
         max-score: 15
