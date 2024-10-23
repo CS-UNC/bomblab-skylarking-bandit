@@ -25,18 +25,6 @@ jobs:
         comparison-method: regex
         timeout: 10
         max-score: 10
-    - name: Second Phase
-      id: second-phase
-      uses: classroom-resources/autograding-io-grader@v1
-      with:
-        test-name: Second Phase
-        setup-command: sudo chmod 755 bomb
-        command: "./bomb < solution.txt"
-        input: ''
-        expected-output: That's number 2\. Keep going\!
-        comparison-method: regex
-        timeout: 10
-        max-score: 10
     - name: Third phase
       id: third-phase
       uses: classroom-resources/autograding-io-grader@v1
@@ -49,34 +37,6 @@ jobs:
         comparison-method: regex
         timeout: 10
         max-score: 10
-    - name: Fourth Phase
-      id: fourth-phase
-      uses: classroom-resources/autograding-io-grader@v1
-      with:
-        test-name: Fourth Phase
-        setup-command: sudo chmod 755 bomb
-        command: "./bomb < solution.txt"
-        input: ''
-        expected-output: 'So you got that one\. Try this one\.
-
-          '
-        comparison-method: regex
-        timeout: 10
-        max-score: 15
-    - name: Fifth Phase
-      id: fifth-phase
-      uses: classroom-resources/autograding-io-grader@v1
-      with:
-        test-name: Fifth Phase
-        setup-command: sudo chmod 755 bomb
-        command: "./bomb < solution.txt"
-        input: ''
-        expected-output: 'Good work\! On to the next\.\.\.
-
-          '
-        comparison-method: regex
-        timeout: 10
-        max-score: 15
     - name: Sixth Phase
       id: sixth-phase
       uses: classroom-resources/autograding-io-grader@v1
@@ -89,14 +49,49 @@ jobs:
         comparison-method: regex
         timeout: 10
         max-score: 15
+    - name: Second Phase (Included Test)
+      id: second-phase-included-test
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Second Phase (Included Test)
+        setup-command: chmod 755 bomb
+        command: "./bomb solution.txt"
+        input: ''
+        expected-output: That's number 2. Keep going!
+        comparison-method: contains
+        timeout: 10
+        max-score: 10
+    - name: Fourth Phase (Included Test)
+      id: fourth-phase-included-test
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Fourth Phase (Included Test)
+        setup-command: chmod 755 bomb
+        command: "./bomb solution.txt"
+        input: ''
+        expected-output: So you got that one. Try this one.
+        comparison-method: contains
+        timeout: 10
+    - name: Fifth Phase (Included Test)
+      id: fifth-phase-included-test
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Fifth Phase (Included Test)
+        setup-command: sudo chmod 755 bomb
+        command: "./bomb solution.txt"
+        input: ''
+        expected-output: Good work! On to the next...
+        comparison-method: contains
+        timeout: 10
+        max-score: 15
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         FIRST-PHASE_RESULTS: "${{steps.first-phase.outputs.result}}"
-        SECOND-PHASE_RESULTS: "${{steps.second-phase.outputs.result}}"
         THIRD-PHASE_RESULTS: "${{steps.third-phase.outputs.result}}"
-        FOURTH-PHASE_RESULTS: "${{steps.fourth-phase.outputs.result}}"
-        FIFTH-PHASE_RESULTS: "${{steps.fifth-phase.outputs.result}}"
         SIXTH-PHASE_RESULTS: "${{steps.sixth-phase.outputs.result}}"
+        SECOND-PHASE-INCLUDED-TEST_RESULTS: "${{steps.second-phase-included-test.outputs.result}}"
+        FOURTH-PHASE-INCLUDED-TEST_RESULTS: "${{steps.fourth-phase-included-test.outputs.result}}"
+        FIFTH-PHASE-INCLUDED-TEST_RESULTS: "${{steps.fifth-phase-included-test.outputs.result}}"
       with:
-        runners: first-phase,second-phase,third-phase,fourth-phase,fifth-phase,sixth-phase
+        runners: first-phase,third-phase,sixth-phase,second-phase-included-test,fourth-phase-included-test,fifth-phase-included-test
