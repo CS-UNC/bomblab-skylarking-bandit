@@ -33,7 +33,7 @@ jobs:
         setup-command: sudo chmod 755 bomb
         command: "./bomb < solution.txt"
         input: ''
-        expected-output: That's number 2. Keep going!
+        expected-output: That's number 2\. Keep going\!
         comparison-method: regex
         timeout: 10
         max-score: 10
@@ -57,7 +57,7 @@ jobs:
         setup-command: sudo chmod 755 bomb
         command: "./bomb < solution.txt"
         input: ''
-        expected-output: 'So you got that one. Try this one.
+        expected-output: 'So you got that one\. Try this one\.
 
           '
         comparison-method: regex
@@ -71,7 +71,7 @@ jobs:
         setup-command: sudo chmod 755 bomb
         command: "./bomb < solution.txt"
         input: ''
-        expected-output: 'Good work! On to the next...
+        expected-output: 'Good work\! On to the next\.\.\.
 
           '
         comparison-method: regex
