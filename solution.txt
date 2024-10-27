@@ -1,1 +1,6 @@
-Remove this line. Enter your phrases line by line here.
+Public speaking is very easy.
+0 1 3 6 10 15
+4 0
+352 4
+a12347
+4 1 2 3 6 5
